@@ -11,6 +11,31 @@ public class Album {
         this.artist = artist;
 
     }
+
+    public String getSong() {
+        return song;
+    }
+
+    public void setSong(String song) {
+        this.song = song;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
     public Album(String song , String artist){
         this.song = song;
         this.artist = artist;

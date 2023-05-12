@@ -13,14 +13,32 @@ public class PlayList {
         this.songs = new ArrayList<>();
         itr = songs.listIterator();
     }
+    public Optional<Song> songPresent(Album alb , String s){
+        for(Song song : songs){
+            if(song.getName().equals(s) && song.getArtist().equals(alb.getArtist()))return Optional.of(song);
+        }
+        return Optional.empty();
+    }
     public String addSongFromAlbum(Album alb , String s){
         Optional<Song> a = alb.getSong(s);
         if(a.isPresent()){
+            Optional<Song> exists = songPresent(alb,s);
+            if(exists.isPresent()){
+                return "song already exists";
+            }
             songs.add(a.get());
             itr = songs.listIterator();
             return "song added succesfully";
         }
         return "song not present";
+    }
+    public String deleteSong(Album alb , String s) {
+        Optional<Song> exists = songPresent(alb,s);
+        if(exists.isPresent()){
+            songs.remove(exists.get());
+            return "song removed successfully";
+        }
+       return "song not present";
     }
     public String playNext(){
         if(!wasNext){
